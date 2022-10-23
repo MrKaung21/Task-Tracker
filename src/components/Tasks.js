@@ -1,10 +1,11 @@
 import { useState } from "react"
+import Task from "./Task"
 
-const Tasks = ({ tasks }) => {
+const Tasks = ({ tasks, deleteTask }) => {
   return (
     <>
         {tasks.map((task) => (
-            <h3>{task.text}</h3>
+            <Task task={task} key={task.id} deleteTask={deleteTask} />
         ))}
     </>
   )
