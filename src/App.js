@@ -24,6 +24,14 @@ function App() {
         reminder: false,
     }
   ])  
+  const [toggleAddForm, setToggleAddForm] = useState(false)
+
+  // Add Task
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = { id, ...task }
+    setTasks([...tasks, newTask])
+  }
 
   // Delete Task
   const deleteTask = (id) => {
@@ -38,8 +46,8 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <AddTask />
+      <Header toggleAddForm={toggleAddForm} setToggleAddForm={setToggleAddForm} />
+      {toggleAddForm && <AddTask addTask={addTask} />}
       {tasks.length > 0 ? <Tasks tasks={tasks} deleteTask={deleteTask} toggleReminder={toggleReminder} /> : 'NO task to show'}
     </div>
   );
